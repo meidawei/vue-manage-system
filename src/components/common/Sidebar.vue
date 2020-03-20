@@ -114,7 +114,7 @@ export default {
                         }
                     ]
                 },
-                {
+                /* {
                     icon: 'el-icon-lx-calendar',
                     index: '3',
                     title: '表单相关',
@@ -153,7 +153,7 @@ export default {
                             title: '拖拽列表'
                         }
                     ]
-                }
+                } */
             ]
         };
     },
