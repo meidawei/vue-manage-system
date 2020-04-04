@@ -97,18 +97,14 @@ export default new Router({
       ]
     },
     {
-      path: '/login',
-      component: () => import('../components/page/Login.vue'),
-      meta: { title: '登录' }
-    },
-    {
       path: '/register',
       component: () => import('../components/page/Register.vue'),
       meta: { title: '注册' }
     },
     {
-      path: '*',
-      redirect: '/404'
-    }
+      path: '/login',
+      component: () => import('../components/page/Login.vue'),
+      meta: { title: '登录' }
+    },
   ]
 });

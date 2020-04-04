@@ -65,6 +65,7 @@ export default {
             });
         },
         toRegister() {
+            localStorage.setItem('ms_username', this.param.username);
             this.$router.push('/register');
         }
     }

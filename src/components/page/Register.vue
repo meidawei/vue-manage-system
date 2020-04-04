@@ -35,11 +35,11 @@
                                 ></el-date-picker>
                             </el-col>
                         </el-form-item>
+                    </div>
+                    <div class="left" style="flex:1">
                         <el-form-item label="地址">
                             <el-cascader @change="selectPlace" :options="options"></el-cascader>
                         </el-form-item>
-                    </div>
-                    <div class="left" style="flex:1">
                         <el-form-item label="邮箱地址">
                             <el-input v-model="form.email"></el-input>
                         </el-form-item>
@@ -58,26 +58,6 @@
                             <el-select @change="departmentChange" v-model="form.departmentId" placeholder="请选择">
                                 <el-option v-for="item in departmentList" :key="item.departmentId" :label="item.departmentName" :value="item.departmentId"></el-option>
                             </el-select>
-                        </el-form-item>
-                        <el-form-item label="创建时间">
-                            <el-col :span="11">
-                                <el-date-picker
-                                    type="date"
-                                    placeholder="创建时间"
-                                    value-format="yyyy-MM-dd"
-                                    v-model="form.createTime"
-                                ></el-date-picker>
-                            </el-col>
-                        </el-form-item>
-                        <el-form-item label="修改时间">
-                            <el-col :span="11">
-                                <el-date-picker
-                                    type="date"
-                                    placeholder="修改时间"
-                                    value-format="yyyy-MM-dd"
-                                    v-model="form.updateTime"
-                                ></el-date-picker>
-                            </el-col>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="submitForm('form')">注册</el-button>
@@ -104,34 +84,56 @@ export default {
             },{
               classId:'3',
               className:'三班'
+            },{
+              classId:'4',
+              className:'四班'
             }],//班级信息
             departmentList:[{
               departmentId:'1',
-              departmentName:'文学社'
+              departmentName:'组织部'
             },{
               departmentId:'2',
-              departmentName:'学生会'
+              departmentName:'志愿服务站'
             },{
               departmentId:'3',
-              departmentName:'自律会'
+              departmentName:'师友电脑维修部'
+            },{
+              departmentId:'4',
+              departmentName:'办公室'     
+            },{
+              departmentId:'5',
+              departmentName:'学习部'     
+            },{
+              departmentId:'6',
+              departmentName:'文体部'     
+            },{
+              departmentId:'7',
+              departmentName:'宣传部'     
+            },{
+              departmentId:'8',
+              departmentName:'网络技术部'     
+            },{
+              departmentId:'9',
+              departmentName:'外联部'     
+            },{
+              departmentId:'10',
+              departmentName:'辩论队'     
             }],
             form: {
-                realName: '', //真实姓名
-                userName: '', //用户名
+                realName: '阿狸爱乘凉', //真实姓名
+                userName: 'alin', //用户名
                 sex: '男', //性别
-                userId: '', //学号
-                usePwd: '', //密码
-                birth: '', //出生日期
-                address: '', //地址
-                email: '', //邮箱地址
-                idCard: '', //身份证
-                phone: '', //电话号码
-                createTime: '', //创建时间
-                updateTime: '', //修改时间
-                classId: '', //所属班级
-                className: '', //所属班级名称
-                departmentId: '', //所属部门
-                departmentName: '' //所属部门名称
+                userId: '201441404222', //学号
+                usePwd: '123456', //密码
+                birth: '20140408', //出生日期
+                address: '广东省东莞市松山湖', //地址
+                email: '2983277940@qq.com', //邮箱地址
+                idCard: '440981199908218119', //身份证
+                phone: '13631789756', //电话号码
+                classId: '2', //所属班级
+                className: '二班', //所属班级名称
+                departmentId: '2', //所属部门
+                departmentName: '自律会' //所属部门名称
             },
             options: [
                 {
@@ -202,8 +204,6 @@ export default {
                 className: [{ required: true, message: '请输入班级名称', trigger: 'blur' }],
                 departmentId: [{ required: true, message: '请选择所属部门', trigger: 'change' }],
                 departmentName: [{ required: true, message: '请输入部门名称', trigger: 'blur' }],
-                createTime: [{ required: true, message: '请输入创建时间', trigger: 'blur' }],
-                updateTime: [{ required: true, message: '请输入修改时间', trigger: 'blur' }]
             }
         };
     },
@@ -211,7 +211,9 @@ export default {
         submitForm(form) {
           const {model} = this.$refs[form]
           console.log(model);
-          this.$axios.post(`${this.$baseUrl}user/register.do`,{
+          const birth = model.birth.replace(/-/g, "")
+          console.log(`${this.$baseUrl}/user/register.do`);
+          this.$axios.post(`${this.$baseUrl}/user/register.do`,{
             realName:model.realName,
             userName:model.userName,
             usePwd:model.usePwd,
@@ -219,7 +221,7 @@ export default {
             usePwd:model.usePwd,
             password:model.password,
             userId:model.userId,
-            birth:model.birth,
+            birth:birth,
             address:model.address,
             email:model.email,
             idCard:model.idCard,
@@ -231,7 +233,7 @@ export default {
             createTime:model.createTime,
             updateTime:model.updateTime,
           }).then(res=>{
-            console.log(res);
+              console.log(res);
           })
             /* this.$refs[form].validate(valid => {
                 if (valid) {
