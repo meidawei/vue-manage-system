@@ -32,8 +32,8 @@ export default {
     data: function() {
         return {
             param: {
-                username: 'admin',
-                password: '123456'
+                username: '',
+                password: ''
             },
             rules: {
                 username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -45,18 +45,30 @@ export default {
         submitForm() {
             this.$refs.login.validate(valid => {
                 if (valid) {
-                    this.$message.success('登录成功');
-                    localStorage.setItem('ms_username', this.param.username);
-                    this.$router.push('/');
-                    /* const { model } = this.$refs.login;
-                    this.$axios
-                        .post(`${this.$baseUrl}user/login.do`, {
+                    const { model } = this.$refs.login;
+                    this.$http({
+                        url: 'http://47.104.226.136:8080/user/login.do',
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        emulateJSON: true,
+                        body:{
                             username: this.param.username,
                             password: this.param.password
-                        })
-                        .then(res => {
-
-                        }); */
+                        }
+                    }).then(res=>{
+                        if (res.data.status == 0) {
+                            const userInfo = res.data.data
+                            this.$message.success('登录成功');
+                            localStorage.setItem('ms_username', this.param.username);
+                            localStorage.setItem('ms_password', this.param.password);
+                            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+                            this.$router.push('/');
+                        } else {
+                            this.$message.error(res.data.msg);
+                        }
+                    })
                 } else {
                     this.$message.error('请输入账号和密码');
                     console.log('error submit!!');
@@ -65,7 +77,7 @@ export default {
             });
         },
         toRegister() {
-            localStorage.setItem('ms_username', this.param.username);
+            localStorage.setItem('ms_username', 'hoboo1');
             this.$router.push('/register');
         }
     }

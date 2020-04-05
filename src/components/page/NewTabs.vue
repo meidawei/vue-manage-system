@@ -54,19 +54,29 @@ export default {
             const { model } = this.$refs[form];
             console.log(model);
             const { title, content } = model;
-            this.$axios
-                .post(`${this.$baseUrl}notice/addNotice.do`, {
+            this.$http({
+                url: 'http://47.104.226.136:8080/notice/addNotice.do',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                emulateJSON: true,
+                body: {
                     title: title,
                     content: content
-                })
-                .then(res => {
-                    console.log(res);
-                    this.$message.success('提交成功！');
-                });
-            setTimeout(() => {
-                // 跳转发布成功页
-                // this.$router.push('/tabs')
-            }, 1000);
+                }
+            }).then(res => {
+                console.log(res);
+                if (res.data.status == 0) {
+                    this.$message.success('发布成功！');
+                    setTimeout(() => {
+                        // 跳转发布成功页
+                        // this.$router.push('/tabs')
+                    }, 1000);
+                } else {
+                    this.$message.error(res.data.msg || '发布失败');
+                }
+            });
         }
     },
     created() {}

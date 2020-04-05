@@ -68,6 +68,7 @@ export default {
             if (command == 'loginout') {
                 this.$message.success('退出成功');
                 localStorage.removeItem('ms_username');
+                localStorage.removeItem('ms_password');
                 this.$router.push('/login');
             }
         },

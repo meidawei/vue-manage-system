@@ -60,6 +60,11 @@ export default new Router({
           meta: { title: '发布公告' }
         },
         {
+          path: '/datamanage',
+          component: () => import('../components/page/DataManage.vue'),
+          meta: { title: '查看资料' }
+        },
+        {
           path: '/form',
           component: () => import('../components/page/BaseForm.vue'),
           meta: { title: '基本表单' }

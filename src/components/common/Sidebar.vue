@@ -114,7 +114,12 @@ export default {
                         }
                     ]
                 },
-                /* {
+                {
+                    icon: 'el-icon-lx-home',
+                    index: 'datamanage',
+                    title: '查看资料'
+                },
+                {
                     icon: 'el-icon-lx-calendar',
                     index: '3',
                     title: '表单相关',
@@ -143,7 +148,7 @@ export default {
                         }
                     ]
                 },
-                {
+                /* {
                     icon: 'el-icon-rank',
                     index: '6',
                     title: '拖拽组件',

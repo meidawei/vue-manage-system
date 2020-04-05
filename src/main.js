@@ -9,8 +9,10 @@ import 'babel-polyfill';
 import axios from 'axios'
 Vue.prototype.$axios = axios
 axios.defaults.withCredentials = true; //让ajax携带cookie
-// axios.defaults.baseURL = '/api'
-Vue.prototype.$baseUrl = 'http://47.104.226.136'
+import VueResource from 'vue-resource'
+Vue.use(VueResource)
+// axios.defaults.baseURL = 'http://47.104.226.136:8080/'
+Vue.prototype.$baseUrl = 'http://47.104.226.136:8080/'
 // 时间编辑
 import moment from "moment";
 Vue.filter("currentTime", value => {

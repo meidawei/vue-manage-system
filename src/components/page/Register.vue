@@ -50,13 +50,31 @@
                             <el-input v-model="form.idCard"></el-input>
                         </el-form-item>
                         <el-form-item label="所属班级">
-                            <el-select @change="classChange" v-model="form.classId" placeholder="请选择">
-                              <el-option v-for="item in classList" :key="item.classId" :label="item.className" :value="item.classId"></el-option>
+                            <el-select
+                                @change="classChange"
+                                v-model="form.classId"
+                                placeholder="请选择"
+                            >
+                                <el-option
+                                    v-for="item in classList"
+                                    :key="item.classId"
+                                    :label="item.className"
+                                    :value="item.classId"
+                                ></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item label="所属部门">
-                            <el-select @change="departmentChange" v-model="form.departmentId" placeholder="请选择">
-                                <el-option v-for="item in departmentList" :key="item.departmentId" :label="item.departmentName" :value="item.departmentId"></el-option>
+                            <el-select
+                                @change="departmentChange"
+                                v-model="form.departmentId"
+                                placeholder="请选择"
+                            >
+                                <el-option
+                                    v-for="item in departmentList"
+                                    :key="item.departmentId"
+                                    :label="item.departmentName"
+                                    :value="item.departmentId"
+                                ></el-option>
                             </el-select>
                         </el-form-item>
                         <el-form-item>
@@ -75,65 +93,81 @@
 export default {
     data: function() {
         return {
-            classList:[{
-              classId:'1',
-              className:'一班'
-            },{
-              classId:'2',
-              className:'二班'
-            },{
-              classId:'3',
-              className:'三班'
-            },{
-              classId:'4',
-              className:'四班'
-            }],//班级信息
-            departmentList:[{
-              departmentId:'1',
-              departmentName:'组织部'
-            },{
-              departmentId:'2',
-              departmentName:'志愿服务站'
-            },{
-              departmentId:'3',
-              departmentName:'师友电脑维修部'
-            },{
-              departmentId:'4',
-              departmentName:'办公室'     
-            },{
-              departmentId:'5',
-              departmentName:'学习部'     
-            },{
-              departmentId:'6',
-              departmentName:'文体部'     
-            },{
-              departmentId:'7',
-              departmentName:'宣传部'     
-            },{
-              departmentId:'8',
-              departmentName:'网络技术部'     
-            },{
-              departmentId:'9',
-              departmentName:'外联部'     
-            },{
-              departmentId:'10',
-              departmentName:'辩论队'     
-            }],
+            classList: [
+                {
+                    classId: '1',
+                    className: '一班'
+                },
+                {
+                    classId: '2',
+                    className: '二班'
+                },
+                {
+                    classId: '3',
+                    className: '三班'
+                },
+                {
+                    classId: '4',
+                    className: '四班'
+                }
+            ], //班级信息
+            departmentList: [
+                {
+                    departmentId: '1',
+                    departmentName: '组织部'
+                },
+                {
+                    departmentId: '2',
+                    departmentName: '志愿服务站'
+                },
+                {
+                    departmentId: '3',
+                    departmentName: '师友电脑维修部'
+                },
+                {
+                    departmentId: '4',
+                    departmentName: '办公室'
+                },
+                {
+                    departmentId: '5',
+                    departmentName: '学习部'
+                },
+                {
+                    departmentId: '6',
+                    departmentName: '文体部'
+                },
+                {
+                    departmentId: '7',
+                    departmentName: '宣传部'
+                },
+                {
+                    departmentId: '8',
+                    departmentName: '网络技术部'
+                },
+                {
+                    departmentId: '9',
+                    departmentName: '外联部'
+                },
+                {
+                    departmentId: '10',
+                    departmentName: '辩论队'
+                }
+            ],
             form: {
-                realName: '阿狸爱乘凉', //真实姓名
-                userName: 'alin', //用户名
+                realName: '', //真实姓名
+                userName: '', //用户名
                 sex: '男', //性别
-                userId: '201441404222', //学号
-                usePwd: '123456', //密码
-                birth: '20140408', //出生日期
-                address: '广东省东莞市松山湖', //地址
-                email: '2983277940@qq.com', //邮箱地址
-                idCard: '440981199908218119', //身份证
-                phone: '13631789756', //电话号码
-                classId: '2', //所属班级
-                className: '二班', //所属班级名称
-                departmentId: '2', //所属部门
-                departmentName: '自律会' //所属部门名称
+                userId: '', //学号
+                usePwd: '', //密码
+                birth: '', //出生日期
+                address: '', //地址
+                email: '', //邮箱地址
+                idCard: '', //身份证
+                phone: '', //电话号码
+                classId: '', //所属班级
+                className: '', //所属班级名称
+                departmentId: '', //所属部门
+                departmentName: '' //所属部门名称
             },
             options: [
                 {
@@ -193,7 +227,6 @@ export default {
                 usePwd: [{ required: true, message: '请选择密码', trigger: 'blur' }],
                 sex: [{ required: true, message: '请选择性别', trigger: 'change' }],
                 usePwd: [{ required: true, message: '请选择密码', trigger: 'blur' }],
-                password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
                 userId: [{ required: true, message: '请输入学号', trigger: 'blur' }],
                 birth: [{ required: true, message: '请选择出生日期', trigger: 'change' }],
                 address: [{ required: true, message: '请输入地址', trigger: 'blur' }],
@@ -203,70 +236,72 @@ export default {
                 classId: [{ required: true, message: '请选择所属班级', trigger: 'change' }],
                 className: [{ required: true, message: '请输入班级名称', trigger: 'blur' }],
                 departmentId: [{ required: true, message: '请选择所属部门', trigger: 'change' }],
-                departmentName: [{ required: true, message: '请输入部门名称', trigger: 'blur' }],
+                departmentName: [{ required: true, message: '请输入部门名称', trigger: 'blur' }]
             }
         };
     },
     methods: {
         submitForm(form) {
-          const {model} = this.$refs[form]
-          console.log(model);
-          const birth = model.birth.replace(/-/g, "")
-          console.log(`${this.$baseUrl}/user/register.do`);
-          this.$axios.post(`${this.$baseUrl}/user/register.do`,{
-            realName:model.realName,
-            userName:model.userName,
-            usePwd:model.usePwd,
-            sex:model.sex,
-            usePwd:model.usePwd,
-            password:model.password,
-            userId:model.userId,
-            birth:birth,
-            address:model.address,
-            email:model.email,
-            idCard:model.idCard,
-            phone:model.phone,
-            classId:model.classId,
-            className:model.className,
-            departmentId:model.departmentId,
-            departmentName:model.departmentName,
-            createTime:model.createTime,
-            updateTime:model.updateTime,
-          }).then(res=>{
-              console.log(res);
-          })
-            /* this.$refs[form].validate(valid => {
-                if (valid) {
+            const { model } = this.$refs[form];
+            console.log(model);
+            const birth = model.birth.replace(/-/g, '');
+            console.log(`http://47.104.226.136:8080/user/register.do`);
+            this.$http({
+                url: 'http://47.104.226.136:8080/user/register.do',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded' //请求头部
+                },
+                emulateJSON: true, //以application/x-www-form-urlencoded的请求头部发送参数
+                body: {
+                    realName: model.realName,
+                    userName: model.userName,
+                    usePwd: model.usePwd,
+                    sex: model.sex,
+                    usePwd: model.usePwd,
+                    userId: model.userId,
+                    birth: birth,
+                    address: model.address,
+                    email: model.email,
+                    idCard: model.idCard,
+                    phone: model.phone,
+                    classId: model.classId,
+                    className: model.className,
+                    departmentId: model.departmentId,
+                    departmentName: model.departmentName,
+                }
+            }).then(res => {
+                console.log(res);
+                if(res.data.status==0){
                     this.$message.success('注册成功');
                     setTimeout(() => {
                         this.$router.push('/login');
                     }, 1000);
-                } else {
-                    console.log('error submit!!');
-                    return false;
+                }else{
+                    this.$message.error(res.data.msg);
                 }
-            }); */
+            });
         },
         toLogin() {
             this.$router.push('/login');
         },
-        selectPlace(value){
-          this.form.address = value[0] + value[1] + value[2]
-          console.log(this.form.address);
+        selectPlace(value) {
+            this.form.address = value[0] + value[1] + value[2];
+            console.log(this.form.address);
         },
-        classChange(value){
-          this.classList.map(item=>{
-            if(value == item.classId){
-              this.form.className = item.className
-            }
-          })
+        classChange(value) {
+            this.classList.map(item => {
+                if (value == item.classId) {
+                    this.form.className = item.className;
+                }
+            });
         },
-        departmentChange(value){
-          this.departmentList.map(item=>{
-            if(value == item.departmentId){
-              this.form.departmentName = item.departmentName
-            }
-          })
+        departmentChange(value) {
+            this.departmentList.map(item => {
+                if (value == item.departmentId) {
+                    this.form.departmentName = item.departmentName;
+                }
+            });
         }
     }
 };

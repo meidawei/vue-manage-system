@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 const service = axios.create({
-    //主要是这个
-    withCredentials: true,//跨域请求设置
+    /* withCredentials: true,
+    baseURL: 'http://47.104.226.136:8080', */
     timeout: 5000
 });
 
